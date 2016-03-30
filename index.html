@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Frigular</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<div class="wrapper">
+
+	<div class="content">
+
+		<h1><img src="img/logo.png" alt="Frigular"></h1>
+
+		<div id="steps">
+		  <div class="step active" data-desc="Quel type de plat ?">1</div>
+		  <div class="step " data-desc="Quels ingrédients ?">2</div>
+		  <div class="step" data-desc="Sélectionnez un plat">3</div>
+		  <div class="step" data-desc="Recommencez">4</div>
+		</div>
+
+		<div class="form partOne">
+			<select id="type">
+			    <option value="hide">Plat principal, dessert...</option>
+			    <option value="1">Plat principal</option>
+			    <option value="2">Entrée</option>
+			    <option value="3">Dessert</option>
+			    <option value="4">Autre</option>
+			</select>
+		</div>
+		<div class="form partTwo inactive">
+			<input type="text" id="ingredients" placeholder="Chocolat, yaourt, farine...">
+		</div>
+		<a href="#" class="cta continue">Continuer</a>
+	</div>
+</div>
+<script>
+$(document).ready( function() {
+  /*$('.step').each(function(index, element) {
+    // element == this
+    $(element).not('.active').addClass('done');
+    $('.done').html('<i class="icon-ok"></i>');
+    if($(this).is('.active')) {
+      return false;
+    }
+  });  */ 
+  $('.cta.continue').click(function(){
+  	$('.partOne').addClass('done');
+  	$('.partTwo').fadeIn();
+  	setTimeout(function(){
+  		$('.partOne').fadeOut();
+	  	$('.partTwo').removeClass('inactive');
+  	}, 500);
+  	setTimeout(function(){
+	  	$('.step:nth-of-type(1)').removeClass('active').addClass('done').html('<i class="icon-ok"></i>');
+	  	$('.step:nth-of-type(2)').addClass('active');
+  	}, 2000);
+  });
+});
+</script>
+<script src="main.js"></script>
+</body>
+</html>
